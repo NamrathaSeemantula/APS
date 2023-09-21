@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block link %}
+<style>
+    .content-container{
+    display: flex;
+    justify-content: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="card w-50" style="width: 18rem;">
+        {% if userprofile.profile_pic %}
+            <img src="../../media/{{ userprofile.profile_pic }}" class="card-img-top" alt="...">
+        {% else %}
+            <img class="profile-pic" src="../media/profile_pics/user.jpg" class="card-img-top" alt="...">
+        {% endif %}
+        
+        <div class="card-body user-card">
+          <h5 class="card-title user-info">{{ userprofile.user }}</h5>
+          <p class="card-text user-info">{{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</p>
+          <p class="card-text user-info">{{ userprofile.user.email }}</p>
+          <p class="card-text user-info">{{ userprofile.passed_out_year }}</p>
+          <p class="card-text user-info">{{ userprofile.dept }}</p>
+        </div>
+    </div>
+
+    <div class="user-content">
+        {% if blogs %}
+            <div class="blogs-container secondary-containers">
+                <h3 class="headers algin-self">Blogs</h3>
+                {% for blog in blogs %}
+                    {% if blog.author == userprofile.user.username %}
+                        <div class="data-card">    
+                            <h3><a href="{% url 'readblogs' blog.id %}">{{ blog.blogtopic }}</a></h3>
+                            <p>{{ blog.tag }}</p>
+                            <div class="flex">
+                                <!-- <button class="action-buttons pri"><a href="{% url 'editblogs' blog.id %}">Edit Blog</a></button>
+                                <button class="action-buttons del"><a href="{% url 'deleteblogs' blog.id %}">Delete Blog</a></button> -->
+                            </div>
+                            
+                        </div>
+                    {% endif %}                    
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if posts %}
+            <div class="posts-conatiner secondary-containers">
+                <h3 class="headers algin-self">Posts</h3>
+                {% for post in posts %}
+                    {% if post.author == userprofile.user.username %}
+                        <div class="data-card">
+                            {% block postimage %}
+                                <img src="../../media/{{ post.postimage }}" alt="post" width="200">
+                            {% endblock %}
+                            <p>{{ post.caption }}</p>
+                            <div class="flex">
+                                <!-- <button class="action-buttons pri"><a href="{% url 'posts:editpost' post.id %}">Edit</a></button>
+                                <button class="action-buttons del"><a href="{% url 'posts:deletepost' post.id %}">Delete</a></button> -->
+                            </div>
+                            
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if contents %}
+            <div class="queries-container secondary-containers">
+                <h3 class="headers algin-self">Queries</h3>
+                {% for content in contents %}
+                    {% if content.author == userprofile.user.username %}
+                    <div class="data-card">
+                        <p>{{ content.query }}</p>
+                        <p>{{ content.tag }}</p>
+                        <button class="action-buttons read"><a href="{% url 'readanswers' content.id %}">Read Answers</a></button>
+                        <!-- <button class="action-buttons del"><a href="{% url 'deletequery' content.id %}">Delete Query</a></button> -->
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+

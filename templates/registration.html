@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="head-container">
+    {% if registered %}
+        <h1>Thank you for registering</h1>
+    {% else %}
+        <h1>Register Here</h1>
+
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="mar">
+                {{ user_form.username}}
+            </div>
+            <div class="mar">
+                {{ user_form.firstname }}
+            </div>
+            <div class="mar">
+                {{ user_form.lastname }}
+            </div>
+            <div class="mar">
+                {{ user_form.password }}
+            </div>
+            <div class="mar">
+                {{ user_form.email }}
+            </div>
+            <div class="mar">
+                {{ profile_form.passed_out_year }}
+            </div>
+            <div class="mar">
+                {{ profile_form.dept }}
+            </div>
+            <div class="mar">
+                <p>Profile picture:</p>
+                {{ profile_form.profile_pic }}
+            </div>
+            <button type="submit" class="action-buttons addquery mar" style="margin: 0;">Register</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

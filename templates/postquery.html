@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="head-container">
+    <h1>Welocome to Post Queries Page</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mar">
+            {{ form.query }}
+        </div>
+        <div class="mar">
+            {{ form.tag }}
+        </div>
+        <button type="submit" class="action-buttons addquery" style="margin: 0;">Submit</button>
+    </form>
+</div>
+    
+{% endblock %}

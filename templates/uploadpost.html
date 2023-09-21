@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="head-container">
+    <h1>Welocome to Write Posts Page</h1>
+    <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div class="mar">
+            {{ form.postimage }}
+        </div>
+        <div class="mar"> 
+            <label>Post Caption</label><br>
+            {{ form.caption }}
+        </div>
+        <button type="submit" class="action-buttons addquery" style="margin: 0;">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="head-container">
+    <h1>Welocome to Write Blogs Page</h1>
+    <form method="POST" class="write-blogs">
+        {% csrf_token %}
+        <div class="mar">
+            {{ form.blogtopic }}
+        </div>
+        <div class="mar">
+            {{ form.blogcontent }}
+        </div>
+        <div class="mar">
+            {{ form.tag }}
+        </div>
+        <button type="submit" class="action-buttons addquery mar" style="margin: 0;">Submit</button>
+    </form>
+</div>
+    
+{% endblock %}

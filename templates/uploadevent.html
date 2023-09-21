@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="head-container">
+    <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div class="mar">
+            {{ form.eventImg }}
+        </div>
+        <div class="mar">
+            <label>Event Topic</label><br>
+            {{ form.eventTopic }}
+        </div>
+        <div class="mar">
+            <label>Date</label><br>
+            {{ form.eventDate }}
+        </div>
+        <div class="mar">
+            <label>Organized by</label><br>
+            {{ form.eventOrganizer }}
+        </div>
+        <div class="mar">
+            <label>Decsription</label><br>
+            {{ form.eventDesc }}
+        </div>
+        <button type="submit" class="action-buttons addquery" style="margin: 0;">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

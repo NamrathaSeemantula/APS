@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- <div class="head-container">
+        <h1>Welocome to Queries Page</h1>
+    </div>
+     -->
+    <form method="GET" class="forms">
+        <input type="text" name="search-area" value="{{ search_input }}" class="input-fields">
+        <button class="action-buttons search" type="submit">Search</button>
+    </form>
+    <br>
+    
+    <form method="GET" class="forms">
+        <select name="filter_tags" id="filter_tags" class="input-fields">
+            {% if tag_input %}
+            <option value="{{ tag_input }}">{{ tag_input }}</option>
+            {% endif %}
+            <option value="">All</option>
+            {% for tag in taglist %}
+            <option value="{{ tag }}">{{ tag }}</option>
+            {% endfor %}
+        </select>
+        <button class="action-buttons filter" type="submit">Filter</button>
+    </form>
+
+    <br>
+    <button class="action-buttons addquery"><a href="./postquery">Post New Query</a></button>    
+    <br>
+    <div class="post-container">
+        {% for content in contents reversed %}
+            {% if content.author != user.username %}
+                <div class="data-card bk">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <h3>{{ content.query }}</h3>
+                        <p>by @{{ content.author }}</p>
+                        <p>#{{ content.tag }}</p>
+                    </div>
+                    <button class="action-buttons read"><a href="{% url 'readanswers' content.id %}">Read Answers</a></button>
+                </div>
+                
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+{% endblock %}

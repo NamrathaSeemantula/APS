@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="head-container">
+    <div class="modal-dialog modal-dialog-scrollable data-card bk">
+        <h3>{{ content.blogtopic }}</h3>
+        <p><b>@{{ content.author }}</b></p>
+        <p>#{{ content.tag }}</p>
+        <p>{{ content.blogcontent }}</p>
+    </div>
+    <div class="data-card bk">
+        <h3>Comments</h3>
+        <form method="POST" class="mar">
+            {% csrf_token %}
+            <div>
+                {{ form.commentcontent }}
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+        {% if not content.comments.all %}
+            <p>No Comments</p>
+        {% else %}
+            {% for comment in content.comments.all %}
+                <div class="comment">
+                    <p><strong>@{{ comment.commentauthor }}</strong> - {{ comment.commentcontent }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+</div>
+
+{% endblock %}

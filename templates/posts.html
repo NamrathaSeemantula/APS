@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- <div class="head-container">
+        <h1>Welocome to Posts Page</h1>
+    </div> -->
+    <button class="action-buttons addquery" style="margin: 3rem;"><a href="./uploadpost">New Post</a></button>    
+    <div class="post-container" style="margin: 2rem;">
+    {% for content in contents reversed %}
+            {% if content.author != user.username %}
+                <div class="data-card bk">
+                    <img src="./media/{{ content.postimage }}" alt="post" width="200">
+                    <p><b>@{{ content.author }}</b></p>
+                    <p>{{ content.caption }}</p>
+                </div>
+            {% endif %}
+            <!-- {% if content.author == user.username %}
+            <button><a href="{% url 'posts:editpost' content.id %}">Edit</a></button>
+            <button><a href="{% url 'posts:deletepost' content.id %}">Delete</a></button>
+            {% endif %} -->
+    {% endfor %}
+
+    </div>
+    
+{% endblock %}
