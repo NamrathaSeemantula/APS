@@ -35,6 +35,7 @@ can answer to their queries made by students.
 Users module has a list of all users and all details about them including their blogs,posts
 and queries
 
+The project's user interface is built with HTML, CSS, and JavaScript, while the backend is developed using Django.
 
 
 
